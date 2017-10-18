@@ -1,14 +1,32 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+  	<ion-toolbar>
+   		<button ion-button menuToggle start>
+      		<span><img height="30" src="assets/images/netpie_microgear_logo.png"/></span>
+    	</button>
+    	<ion-title class="title"><span>chat-app</span></ion-title>
+  	</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  	<ion-list>
+	    <ion-item no-lines *ngFor="let message of messages; let last = last">
+	    	<p  align="{{message.align}}"><b>{{message.from}}</b><span class="{{message.classtext}}">{{message.text}}</span><p>
+	    	{{last ? scrolldown() : ''}}
+	    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  	<ion-row>
+        <ion-col col-9 style="text-align: left;">
+            <ion-input placeholder="message" clearInput [(ngModel)]="text" required>></ion-input>
+        </ion-col>
+        <ion-col col-3 style="text-align: right;">
+            <ion-buttons>
+                <button ion-button small (click)="send()" >
+                    <span>SEND</span>
+                </button>
+            </ion-buttons>
+        </ion-col>
+    </ion-row>
+</ion-footer>
